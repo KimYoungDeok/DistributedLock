@@ -2,7 +2,6 @@ DistributedLock
 ==============
 
 Using Memcached is a distributed lock.
-      =========
 Lightweight and fast performance guarantees.
 
 
