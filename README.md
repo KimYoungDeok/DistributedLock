@@ -1,7 +1,8 @@
 DistributedLock
 ==============
 
-very simple and fast distributed lock.
+Using Memcached is a distributed lock.
+Lightweight and fast performance guarantees.
 
 
 Here's an example:
