@@ -20,13 +20,13 @@ for i in range(_MEMCACHED_POOL_SIZE):
     mc_pool.fill(mc, i)
 
 
-class DistributeLock:
+class DistributedLock:
     """
-    Distribute Lock.
+    Distributed Lock.
 
 
     >> example code <<
-    lock = DistributeLock("name")
+    lock = DistributedLock("name")
     try:
         if lock.acquire(60):
             execute code...
@@ -191,13 +191,13 @@ class DistributeLockPool(dict):
 lockPool = DistributeLockPool()
 
 
-def distribute_lock(timeout=60):
+def distributed_lock(timeout=60):
     """
     DistributeLock decorator
 
     >> example code <<
 
-    @distribute_lock()
+    @distributed_lock()
     def test():
         execute code...
     """

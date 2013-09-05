@@ -1,13 +1,13 @@
-DistributeLock
+DistributedLock
 ==============
 
-very simple and fast distribute lock.
+very simple and fast distributed lock.
 
 
 Here's an example:
 
 ```python
-lock = DistributeLock("name")
+lock = DistributedLock("name")
 
 try:
     if lock.acquire(60):
@@ -17,7 +17,7 @@ finally:
 ```
 
 ```python
-@distribute_lock()
+@distributed_lock()
 def test():
     execute code...
 ```
