@@ -10,10 +10,10 @@ _MEMCACHED_IP = "localhost"
 _MEMCACHED_PORT = "11212"
 _MEMCACHED_POOL_SIZE = 10
 
-#DistributeLock config
+#DistributedLock config
 _RETRY_TIME = 0.01
 
-#connect memcached for distribute lock
+#connect memcached for distributed lock
 mc_pool = pylibmc.ClientPool()
 for i in range(_MEMCACHED_POOL_SIZE):
     mc = pylibmc.Client(['%s:%s' % (_MEMCACHED_IP, _MEMCACHED_PORT)], binary=True)
@@ -50,7 +50,7 @@ class DistributedLock:
             client.set(self.event_key, 0, timeout)
             client.set(self.event_wait_key, 0, timeout)
 
-        logging.debug("DistributeLock init.")
+        logging.debug("DistributedLock init.")
 
     def acquire(self, blocking=True):
         """
@@ -171,9 +171,9 @@ class DistributedLock:
             return client.incr(self.wait_key)
 
 
-class DistributeLockPool(dict):
+class DistributedLockPool(dict):
     """
-    Pooling the name given by the Distribute Lock can be
+    Pooling the name given by the Distributed Lock can be
     """
 
     @contextmanager
@@ -181,19 +181,19 @@ class DistributeLockPool(dict):
         mc = self.pop(name, None)
 
         if mc is None:
-            mc = DistributeLock(name)
+            mc = DistributedLock(name)
         try:
             yield mc
         finally:
             self[name] = mc
 
 
-lockPool = DistributeLockPool()
+lockPool = DistributedLockPool()
 
 
 def distributed_lock(timeout=60):
     """
-    DistributeLock decorator
+    DistributedLock decorator
 
     >> example code <<
 
